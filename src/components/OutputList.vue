@@ -28,7 +28,6 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
 
-// Import components used in this file
 import Button from 'primevue/button'
 import Toolbar from 'primevue/toolbar'
 

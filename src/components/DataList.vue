@@ -48,7 +48,6 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
 
-// Import components used in this file
 import Button from 'primevue/button'
 import Card from 'primevue/card'
 import IftaLabel from 'primevue/iftalabel'

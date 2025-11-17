@@ -33,11 +33,10 @@
 <script setup>
 import { defineProps, defineEmits } from 'vue'
 
-// Import components used in this file
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import Toolbar from 'primevue/toolbar'
-import InputItem from './InputItem.vue' // We need InputItem here
+import InputItem from './InputItem.vue'
 
 const props = defineProps({
   modelValue: {

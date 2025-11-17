@@ -76,7 +76,6 @@ import Card from 'primevue/card'
 import IftaLabel from 'primevue/iftalabel'
 import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
-// MODIFIED: Import Select
 import Select from 'primevue/select'
 
 const props = defineProps({
@@ -84,7 +83,6 @@ const props = defineProps({
     type: Array,
     required: true,
   },
-  // MODIFIED: Added new prop to receive the data list
   dataOptions: {
     type: Array,
     default: () => [],

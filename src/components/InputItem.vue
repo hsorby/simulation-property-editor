@@ -169,7 +169,6 @@ import Select from 'primevue/select'
 import Slider from 'primevue/slider'
 import Toolbar from 'primevue/toolbar'
 
-// We use v-model (modelValue prop) to get the item object
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -180,7 +179,6 @@ const props = defineProps({
 // And emit 'remove' when the delete button is clicked
 const emit = defineEmits(['update:modelValue', 'remove'])
 
-// Logic for 'possibleValues' is now encapsulated in this component
 const addPossibleValue = () => {
   // We can directly mutate the prop's properties because it's
   // a reactive object from the parent's ref.
