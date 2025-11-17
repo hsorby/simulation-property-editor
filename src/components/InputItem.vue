@@ -16,43 +16,45 @@
       </div>
     </template>
     <template #content>
-      <IftaLabel class="mb-3">
-        <InputText
-          :id="'name-' + modelValue.id"
-          v-model="modelValue.name"
-          class="w-full"
-        />
-        <label :for="'name-' + modelValue.id">Name</label>
-      </IftaLabel>
-      <IftaLabel class="mb-3">
-        <InputText
-          :id="'id-' + modelValue.id"
-          v-model="modelValue.id"
-          class="w-full"
-        />
-        <label :for="'id-' + modelValue.id">ID (Optional)</label>
-      </IftaLabel>
-
-      <!-- List Input Fields -->
-      <div v-if="modelValue.possibleValues">
-        <Select
-          v-model="modelValue.defaultValue"
-          :options="modelValue.possibleValues"
-          optionLabel="name"
-          optionValue="value"
-          placeholder="Select a default value"
-          class="w-full mb-3"
-        />
+      <div class="flex align-items-center gap-2">
         <IftaLabel class="mb-3">
           <InputText
-            :id="'vis-' + modelValue.id"
-            placeholder="e.g., 'mode == &quot;advanced&quot;'"
-            v-model="modelValue.visible"
+            :id="'name-' + modelValue.id"
+            v-model="modelValue.name"
             class="w-full"
           />
-          <label :for="'vis-' + modelValue.id">Visibility (Optional)</label>
+          <label :for="'name-' + modelValue.id">Name</label>
         </IftaLabel>
-
+        <IftaLabel class="mb-3">
+          <InputText
+            :id="'id-' + modelValue.id"
+            v-model="modelValue.id"
+            class="w-full"
+          />
+          <label :for="'id-' + modelValue.id">ID (Optional)</label>
+        </IftaLabel>
+          <IftaLabel class="mb-3">
+            <InputText
+              :id="'vis-' + modelValue.id"
+              placeholder="e.g., 'mode == &quot;advanced&quot;'"
+              v-model="modelValue.visible"
+              class="w-full"
+            />
+            <label :for="'vis-' + modelValue.id">Visibility (Optional)</label>
+          </IftaLabel>
+      </div>
+      <!-- List Input Fields -->
+      <div v-if="modelValue.possibleValues">
+        <div class="flex align-items-center gap-2">
+          <Select
+            v-model="modelValue.defaultValue"
+            :options="modelValue.possibleValues"
+            optionLabel="name"
+            optionValue="value"
+            placeholder="Select a default value"
+            class="w-full mb-3"
+          />
+        </div>
         <Accordion :value="'-1'">
           <AccordionPanel value="0">
             <AccordionHeader>Possible Values</AccordionHeader>
@@ -96,33 +98,25 @@
 
       <!-- Range Input Fields -->
       <div v-else>
-        <IftaLabel class="mb-3">
-          <InputNumber
-            :id="'default-' + modelValue.id"
-            v-model="modelValue.defaultValue"
+        <div class="flex align-items-center gap-2">
+          <Slider
+            v-model.number="modelValue.defaultValue"
             :min="modelValue.minimumValue"
             :max="modelValue.maximumValue"
             :step="modelValue.stepValue"
-            class="w-full"
+            class="w-full mb-3"
           />
-          <label :for="'default-' + modelValue.id">Default Value</label>
-        </IftaLabel>
-        <Slider
-          v-model.number="modelValue.defaultValue"
-          :min="modelValue.minimumValue"
-          :max="modelValue.maximumValue"
-          :step="modelValue.stepValue"
-          class="w-full mb-3"
-        />
-        <IftaLabel class="mb-3">
-          <InputText
-            :id="'vis-' + modelValue.id"
-            placeholder="e.g., 'mode == &quot;advanced&quot;'"
-            v-model="modelValue.visible"
-            class="w-full"
-          />
-          <label :for="'vis-' + modelValue.id">Visibility (Optional)</label>
-        </IftaLabel>
+          <IftaLabel class="mb-3">
+            <InputNumber
+              :id="'default-' + modelValue.id"
+              v-model="modelValue.defaultValue"
+              :min="modelValue.minimumValue"
+              :max="modelValue.maximumValue"
+              :step="modelValue.stepValue"
+            />
+            <label :for="'default-' + modelValue.id">Default Value</label>
+          </IftaLabel>
+        </div>
 
         <div class="flex gap-2">
           <IftaLabel class="flex-1">

@@ -22,9 +22,6 @@
         </template>
         <template #content>
           <div class="flex align-items-center gap-2">
-            <!-- 
-              MODIFIED: Changed from InputText to Select.
-            -->
             <IftaLabel class="flex-1">
               <Select
                 :id="'o-plot-x-' + index"
@@ -37,10 +34,6 @@
               />
               <label :for="'o-plot-x-' + index">X Value</label>
             </IftaLabel>
-
-            <!-- 
-              MODIFIED: Changed from InputText to Select.
-            -->
             <IftaLabel class="flex-1">
               <Select
                 :id="'o-plot-y-' + index"
@@ -53,7 +46,6 @@
               />
               <label :for="'o-plot-y-' + index">Y Value</label>
             </IftaLabel>
-
             <IftaLabel class="flex-1">
               <InputText
                 :id="'x-title-' + index"
