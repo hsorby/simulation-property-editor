@@ -2,7 +2,7 @@
   <Toolbar class="mb-2">
     <template #center>
       <Button
-        icon="pi pi-list"
+        icon="pi pi-database"
         class="mr-2"
         severity="primary"
         text
@@ -10,7 +10,7 @@
         @click="addOutputData"
       />
       <Button
-        icon="pi pi-sliders-h"
+        icon="pi pi-chart-scatter"
         severity="primary"
         text
         label="Add Plot"

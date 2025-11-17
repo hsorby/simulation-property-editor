@@ -4,7 +4,7 @@
       <Toolbar class="mb-2">
         <template #center>
           <Button
-            icon="pi pi-plus"
+            icon="pi pi-sparkles"
             size="small"
             severity="primary"
             @click="addParameter"
