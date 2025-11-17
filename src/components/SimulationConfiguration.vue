@@ -1,0 +1,52 @@
+<template>
+  <Panel header="Simulation Configuration">
+    <Accordion :value="['0']" multiple>
+      <AccordionPanel value="0">
+        <AccordionHeader>Inputs</AccordionHeader>
+        <AccordionContent>
+          <InputList v-model="modelValue.input" />
+        </AccordionContent>
+      </AccordionPanel>
+      <AccordionPanel value="1">
+        <AccordionHeader>Outputs</AccordionHeader>
+        <AccordionContent>
+          <DataList v-model="modelValue.output.data" />
+          <PlotList 
+            v-model="modelValue.output.plots" 
+            :data-options="modelValue.output.data" 
+          />
+        </AccordionContent>
+      </AccordionPanel>
+      <AccordionPanel value="2">
+        <AccordionHeader>Parameters</AccordionHeader>
+        <AccordionContent>
+          <ParameterList v-model="modelValue.parameters" />
+        </AccordionContent>
+      </AccordionPanel>
+    </Accordion>
+  </Panel>
+</template>
+
+<script setup>
+// PrimeVue components for the main layout
+import Accordion from 'primevue/accordion'
+import AccordionPanel from 'primevue/accordionpanel'
+import AccordionHeader from 'primevue/accordionheader'
+import AccordionContent from 'primevue/accordioncontent'
+import Panel from 'primevue/panel'
+
+// Import the new child components
+import InputList from './InputList.vue'
+import DataList from './DataList.vue'
+import PlotList from './PlotList.vue'
+import ParameterList from './ParameterList.vue'
+
+
+const props = defineProps({
+  modelValue: {
+    type: Object,
+    required: true,
+  },
+})
+
+</script>
