@@ -10,15 +10,17 @@
         :key="index"
         class="mb-2 pa-2 border rounded"
       >
-        <template #title
-          >Plot {{ index + 1 }}
-          <Button
-            icon="pi pi-trash"
-            size="small"
-            @click="removeOutputPlot(index)"
-            severity="danger"
-            text
-          />
+        <template #title>
+          <div class="flex justify-content-between align-items-center">
+            <span>Plot {{ index + 1 }} </span>
+            <Button
+              icon="pi pi-trash"
+              size="small"
+              @click="removeOutputPlot(index)"
+              severity="danger"
+              text
+            />
+          </div>
         </template>
         <template #content>
           <div class="flex align-items-center gap-2">

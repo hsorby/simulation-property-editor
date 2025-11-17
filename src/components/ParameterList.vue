@@ -26,14 +26,16 @@
         class="mb-2 pa-2 border rounded"
       >
         <template #title>
-          {{ item.name }}
-          <Button
-            icon="pi pi-trash"
-            size="small"
-            @click="removeParameter(index)"
-            severity="danger"
-            text
-          />
+          <div class="flex justify-content-between align-items-center">
+            <span> {{ item.name }}</span>
+            <Button
+              icon="pi pi-trash"
+              size="small"
+              @click="removeParameter(index)"
+              severity="danger"
+              text
+            />
+          </div>
         </template>
         <template #content>
           <div class="flex align-items-center gap-2">
