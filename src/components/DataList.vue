@@ -2,14 +2,7 @@
   <Card class="mb-4">
     <template #title>Data</template>
     <template #content>
-      <Button
-        icon="pi pi-plus"
-        size="small"
-        severity="success"
-        @click="addOutputData"
-        class="mb-2"
-        label="Add Data"
-      />
+      
       <Message v-if="modelValue.length === 0" severity="info" class="mb-4">
         No data items.
       </Message>
@@ -70,19 +63,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue'])
-
-// Logic for adding/removing data items is now here
-const addOutputData = () => {
-  // To update a v-model array, we emit a *new* array
-  const newData = [
-    ...props.modelValue,
-    {
-      id: 'data_' + (props.modelValue.length + 1),
-      name: 'New Data Item',
-    },
-  ]
-  emit('update:modelValue', newData)
-}
 
 const removeOutputData = (index) => {
   // Create a new array without the item at 'index'

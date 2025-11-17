@@ -2,14 +2,6 @@
   <Card class="mb-4">
     <template #title>Plots</template>
     <template #content>
-      <Button
-        icon="pi pi-plus"
-        size="small"
-        severity="success"
-        @click="addOutputPlot"
-        class="mb-2"
-        label="Add Plot"
-      />
       <Message v-if="modelValue.length === 0" severity="info" class="mb-4">
         No plots.
       </Message>
@@ -108,21 +100,6 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['update:modelValue'])
-
-const addOutputPlot = () => {
-  const newPlots = [
-    ...props.modelValue,
-    {
-      // MODIFIED: Set default titles for the new plot
-      xAxisTitle: 'X-Axis',
-      yAxisTitle: 'Y-Axis',
-      // MODIFIED: Set to null for Select placeholder
-      xValue: null,
-      yValue: null,
-    },
-  ]
-  emit('update:modelValue', newPlots)
-}
 
 const removeOutputPlot = (index) => {
   const newPlots = props.modelValue.filter((_, i) => i !== index)

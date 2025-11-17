@@ -10,11 +10,7 @@
       <AccordionPanel value="1">
         <AccordionHeader>Outputs</AccordionHeader>
         <AccordionContent>
-          <DataList v-model="modelValue.output.data" />
-          <PlotList 
-            v-model="modelValue.output.plots" 
-            :data-options="modelValue.output.data" 
-          />
+          <OutputList v-model="modelValue.output"/>
         </AccordionContent>
       </AccordionPanel>
       <AccordionPanel value="2">
@@ -37,8 +33,7 @@ import Panel from 'primevue/panel'
 
 // Import the new child components
 import InputList from './InputList.vue'
-import DataList from './DataList.vue'
-import PlotList from './PlotList.vue'
+import OutputList from './OutputList.vue'
 import ParameterList from './ParameterList.vue'
 
 
