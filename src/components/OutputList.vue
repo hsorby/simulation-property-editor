@@ -1,5 +1,5 @@
 <template>
-  <Toolbar>
+  <Toolbar class="mb-2">
     <template #center>
       <Button
         icon="pi pi-list"
@@ -11,18 +11,13 @@
       />
       <Button
         icon="pi pi-sliders-h"
-        severity="secondary"
+        severity="primary"
         text
         label="Add Plot"
         @click="addOutputPlot"
       />
     </template>
   </Toolbar>
-  <!-- 
-    These bindings are correct.
-    DataList receives the modelValue.data array.
-    PlotList receives the modelValue.plots array.
-  -->
   <DataList v-model="modelValue.data" />
   <PlotList
     v-model="modelValue.plots"
@@ -49,7 +44,6 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-// --- FIXED ---
 // Logic for adding data items
 const addOutputData = () => {
   // Create a new 'output' object
@@ -67,7 +61,6 @@ const addOutputData = () => {
   emit('update:modelValue', newOutputObject)
 }
 
-// --- FIXED ---
 // Logic for adding plot items
 const addOutputPlot = () => {
   // Create a new 'output' object

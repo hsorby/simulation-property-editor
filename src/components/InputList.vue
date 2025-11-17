@@ -1,5 +1,5 @@
 <template>
-  <Toolbar>
+  <Toolbar class="mb-2">
     <template #center>
       <Button
         icon="pi pi-list"
@@ -11,7 +11,7 @@
       />
       <Button
         icon="pi pi-sliders-h"
-        severity="secondary"
+        severity="primary"
         text
         label="Add Range Input"
         @click="addRangeInput"
