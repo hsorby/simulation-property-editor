@@ -33,15 +33,15 @@
           />
           <label :for="'id-' + modelValue.id">ID (Optional)</label>
         </IftaLabel>
-          <IftaLabel class="mb-3">
-            <InputText
-              :id="'vis-' + modelValue.id"
-              placeholder="e.g., 'mode == &quot;advanced&quot;'"
-              v-model="modelValue.visible"
-              class="w-full"
-            />
-            <label :for="'vis-' + modelValue.id">Visibility (Optional)</label>
-          </IftaLabel>
+        <IftaLabel class="mb-3">
+          <InputText
+            :id="'vis-' + modelValue.id"
+            placeholder="e.g., 'mode == &quot;advanced&quot;'"
+            v-model="modelValue.visible"
+            class="w-full"
+          />
+          <label :for="'vis-' + modelValue.id">Visibility (Optional)</label>
+        </IftaLabel>
       </div>
       <!-- List Input Fields -->
       <div v-if="modelValue.possibleValues">
@@ -59,6 +59,16 @@
           <AccordionPanel value="0">
             <AccordionHeader>Possible Values</AccordionHeader>
             <AccordionContent>
+              <Toolbar class="mb-2">
+                <template #center>
+                  <Button
+                    label="Add Value"
+                    icon="pi pi-objects-column"
+                    size="small"
+                    text
+                    severity="primary"
+                    @click="addPossibleValue" /></template
+              ></Toolbar>
               <div
                 v-for="(
                   possibleValue, possibleValueIndex
@@ -84,13 +94,6 @@
                   @click="removePossibleValue(possibleValueIndex)"
                 ></Button>
               </div>
-              <Button
-                label="Add Value"
-                icon="pi pi-plus"
-                size="small"
-                severity="success"
-                @click="addPossibleValue"
-              />
             </AccordionContent>
           </AccordionPanel>
         </Accordion>
@@ -164,6 +167,7 @@ import InputText from 'primevue/inputtext'
 import InputNumber from 'primevue/inputnumber'
 import Select from 'primevue/select'
 import Slider from 'primevue/slider'
+import Toolbar from 'primevue/toolbar'
 
 // We use v-model (modelValue prop) to get the item object
 const props = defineProps({
