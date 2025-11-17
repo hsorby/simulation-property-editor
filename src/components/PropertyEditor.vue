@@ -7,10 +7,6 @@
     </template>
   </Card>
 
-  <!-- 
-    The single, reusable dialog.
-    It's controlled by the 'isPickerOpen' ref.
-  -->
   <Dialog 
     v-model:visible="isPickerOpen" 
     modal 
@@ -27,9 +23,9 @@
 <script setup>
 import { computed, ref, provide, onMounted } from 'vue'
 import Card from 'primevue/card'
-import Dialog from 'primevue/dialog' // Import Dialog
+import Dialog from 'primevue/dialog'
 import SimulationConfiguration from './SimulationConfiguration.vue'
-import CellmlVariablePickerDialog from './CellmlVariablePickerDialog.vue' // Import new component
+import CellmlVariablePickerDialog from './CellmlVariablePickerDialog.vue'
 
 const formData = ref({
   input: [],
@@ -44,13 +40,11 @@ const prettyJson = computed(() => {
   return JSON.stringify(formData.value, null, 2)
 })
 
-// --- CellML Integration ---
-
 const cellmlVariables = ref([])
 const isPickerOpen = ref(false)
-const variablePickerCallback = ref(null) // Stores the callback
+const variablePickerCallback = ref(null)
 
-// 1. Function to load CellML data (using vue-libcellml.js)
+// Function to load CellML data (using vue-libcellml.js)
 const loadCellmlModel = () => {
   // Mock data for this example.
   // In a real app, you'd use your library here.
@@ -67,14 +61,14 @@ const pickableVariables = computed(() => {
   return cellmlVariables.value.filter(v => v.id && v.id.trim() !== '')
 })
 
-// 2. The 'open' function that children will call.
-//    It accepts a callback to run on selection.
+// The 'open' function that children will call.
+// It accepts a callback to run on selection.
 const openVariablePicker = (callback) => {
   variablePickerCallback.value = callback // Store the callback
   isPickerOpen.value = true // Open the dialog
 }
 
-// 3. The 'handler' that the dialog calls.
+// The 'handler' that the dialog calls.
 const onVariableSelected = (variable) => {
   if (variablePickerCallback.value) {
     variablePickerCallback.value(variable) // Execute the stored callback
@@ -83,12 +77,12 @@ const onVariableSelected = (variable) => {
   variablePickerCallback.value = null // Clear the callback
 }
 
-// 4. Load the model on mount
+// Load the model on mount
 onMounted(() => {
   loadCellmlModel()
 })
 
-// 5. PROVIDE the 'open' function to all children
+// PROVIDE the 'open' function to all children
 provide('openVariablePicker', openVariablePicker)
 
 </script>

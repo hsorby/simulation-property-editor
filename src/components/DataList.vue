@@ -2,7 +2,6 @@
   <Card class="mb-4">
     <template #title>Data</template>
     <template #content>
-      
       <Message v-if="modelValue.length === 0" severity="info" class="mb-4">
         No data items.
       </Message>
@@ -39,10 +38,6 @@
               <label :for="'o-data-id-' + index">ID</label>
             </IftaLabel>
 
-            <!-- 
-              NEW BUTTON:
-              This button injects the CellML variable.
-            -->
             <Button
               icon="pi pi-link"
               label="Link"
@@ -50,7 +45,6 @@
               size="small"
               @click="launchPicker(item)"
             />
-
           </div>
         </template>
       </Card>
@@ -59,7 +53,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, inject } from 'vue' // 1. Import inject
+import { defineProps, defineEmits, inject } from 'vue'
 
 import Button from 'primevue/button'
 import Card from 'primevue/card'
@@ -67,7 +61,7 @@ import IftaLabel from 'primevue/iftalabel'
 import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
 
-// 2. Inject the function provided by the parent
+// Inject the function provided by the parent.
 const openVariablePicker = inject('openVariablePicker')
 
 const props = defineProps({
@@ -84,7 +78,6 @@ const removeOutputData = (index) => {
   emit('update:modelValue', newData)
 }
 
-// 3. This function calls the injected function
 const launchPicker = (itemToUpdate) => {
   // Pass a callback that knows which item to update
   openVariablePicker((selectedVariable) => {

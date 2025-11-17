@@ -61,15 +61,15 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, inject } from 'vue' // 1. Import inject
+import { defineProps, defineEmits, inject } from 'vue'
 import Button from 'primevue/button'
 import Card from 'primevue/card'
 import IftaLabel from 'primevue/iftalabel'
 import InputText from 'primevue/inputtext'
 import Message from 'primevue/message'
-import Toolbar from 'primevue/toolbar' // Corrected import
+import Toolbar from 'primevue/toolbar'
 
-// 2. Inject the function
+// Inject the variable picker function.
 const openVariablePicker = inject('openVariablePicker')
 
 const props = defineProps({
@@ -81,7 +81,7 @@ const props = defineProps({
 
 const emit = defineEmits(['update:modelValue'])
 
-// 3. This is the callback for adding a NEW parameter
+// Callback for adding a NEW parameter.
 const addParameter = (selectedVariable) => {
   const newParams = [
     ...props.modelValue,
@@ -93,12 +93,12 @@ const addParameter = (selectedVariable) => {
   emit('update:modelValue', newParams)
 }
 
-// 4. Launch the picker, passing the 'addParameter' function as the callback
+// Launch the picker, passing the 'addParameter' function as the callback.
 const launchPicker = () => {
   openVariablePicker(addParameter)
 }
 
-// This function remains the same
+// This function remains the same.
 const removeParameter = (index) => {
   const newParams = props.modelValue.filter((_, i) => i !== index)
   emit('update:modelValue', newParams)
