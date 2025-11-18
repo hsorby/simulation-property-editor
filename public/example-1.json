@@ -1,0 +1,69 @@
+{
+  "input": [
+    {
+      "defaultValue": 0,
+      "id": "sm",
+      "name": "Simulation mode",
+      "possibleValues": [
+        {
+          "name": "Normal sinus rhythm",
+          "value": 0
+        },
+        {
+          "name": "Stellate stimulation",
+          "value": 1
+        },
+        {
+          "name": "Vagal stimulation",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "defaultValue": 0,
+      "id": "ssl",
+      "maximumValue": 10,
+      "minimumValue": 0,
+      "name": "Stimulation level",
+      "visible": "sm == 1"
+    },
+    {
+      "defaultValue": 0,
+      "id": "vsl",
+      "maximumValue": 10,
+      "minimumValue": 0,
+      "name": "Stimulation level",
+      "visible": "sm == 2"
+    }
+  ],
+  "output": {
+    "data": [
+      {
+        "id": "time",
+        "name": "environment/time"
+      },
+      {
+        "id": "vm",
+        "name": "Membrane/V"
+      }
+    ],
+    "plots": [
+      {
+        "xAxisTitle": "Time (s)",
+        "xValue": "time",
+        "yAxisTitle": "Membrane potential (mV)",
+        "yValue": "vm"
+      }
+    ]
+  },
+  "parameters": [
+    {
+      "name": "Rate_modulation_experiments/Iso_1_uM",
+      "value": "(sm == 0) ? 0.0 : 1.0"
+    },
+    {
+      "name": "Rate_modulation_experiments/ACh",
+      "value": "(sm == 0) ? 0.0 : (sm == 1) ? (1.0 - 0.1 * ssl) * 22.0e-6 : 22.0e-6 + 0.1 * vsl * (38.0e-6 - 22.0e-6)"
+    }
+  ]
+}

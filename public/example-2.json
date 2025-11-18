@@ -1,0 +1,89 @@
+{
+  "input": [
+    {
+      "defaultValue": 10,
+      "id": "v_lv_W",
+      "maximumValue": 150,
+      "minimumValue": 0,
+      "name": "Cardiac output (L/s)"
+    },
+    {
+      "defaultValue": 60,
+      "id": "E_vc",
+      "maximumValue": 100,
+      "minimumValue": 0,
+      "name": "Venous elastance (J)"
+    },
+    {
+      "defaultValue": 1,
+      "id": "kK_pt_Na",
+      "maximumValue": 30,
+      "minimumValue": 0,
+      "name": "Na flux rate proximal tubule (/s)"
+    }
+  ],
+  "output": {
+    "data": [
+      {
+        "id": "t",
+        "name": "main/t"
+      },
+      {
+        "id": "u_ac_W",
+        "name": "main/u_ac_W"
+      },
+      {
+        "id": "c_vc_Na",
+        "name": "main/c_vc_Na"
+      },
+      {
+        "id": "q_ac_W",
+        "name": "main/q_ac_W"
+      },
+      {
+        "id": "q_vc_W",
+        "name": "main/q_vc_W"
+      }
+    ],
+    "plots": [
+      {
+        "xAxisTitle": "Time (s)",
+        "xValue": "t",
+        "yAxisTitle": "Blood pressure (kPa)",
+        "yValue": "u_ac_W"
+      },
+      {
+        "xAxisTitle": "Time (s)",
+        "xValue": "t",
+        "yAxisTitle": "Blood Na+ concentration (mM)",
+        "yValue": "c_vc_Na"
+      },
+      {
+        "xAxisTitle": "Time (s)",
+        "xValue": "t",
+        "yAxisTitle": "Arterial blood volume (L)",
+        "yValue": "q_ac_W"
+      },
+      {
+        "xAxisTitle": "Time (s)",
+        "xValue": "t",
+        "yAxisTitle": "Venous blood volume (L)",
+        "yValue": "q_vc_W"
+      }
+    ]
+  },
+  "parameters": [
+    {
+      "name": "main/v_lv_W",
+      "value": "0.1*v_lv_W"
+    },
+    {
+      "name": "main/E_vc",
+      "value": "E_vc"
+    },
+    {
+      "name": "main/kK_pt_Na",
+      "value": "kK_pt_Na"
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 <template>
   <Panel header="Simulation Configuration">
-    <Accordion :value="['0']" multiple>
+    <Accordion :value="['0', '1', '2']" multiple>
       <AccordionPanel value="0">
         <AccordionHeader>Inputs</AccordionHeader>
         <AccordionContent>
