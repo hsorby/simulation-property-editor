@@ -3,16 +3,12 @@
     <template #content>
       <Toolbar class="mb-2">
         <template #center>
-          <!-- 
-            MODIFIED: This button now opens the picker 
-            instead of just adding a blank parameter.
-          -->
           <Button
             icon="pi pi-sparkles"
             size="small"
             severity="primary"
             @click="launchPicker"
-            label="Add Parameter from CellML"
+            label="Add Parameter"
             text
           />
         </template>
