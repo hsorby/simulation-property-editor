@@ -3,9 +3,10 @@
     <template #title>
       <div class="flex justify-content-between align-items-center">
         <span>
-          {{ modelValue.name || 'New Input' }} <span class="value-type-text">({{
-            modelValue.possibleValues ? 'List' : 'Range'
-          }})</span>
+          {{ modelValue.name || 'New Input' }}
+          <span class="value-type-text"
+            >({{ modelValue.possibleValues ? 'List' : 'Range' }})</span
+          >
         </span>
         <Button
           icon="pi pi-trash"
@@ -42,13 +43,13 @@
           />
           <label :for="'vis-' + modelValue.id">Visibility (Optional)</label>
         </IftaLabel>
-            <Button
-              icon="pi pi-link"
-              label="Link"
-              text
-              size="small"
-              @click="launchPicker(modelValue)"
-            />
+        <Button
+          icon="pi pi-link"
+          label="Link"
+          text
+          size="small"
+          @click="launchPicker(modelValue)"
+        />
       </div>
       <!-- List Input Fields -->
       <div v-if="modelValue.possibleValues">

@@ -7,7 +7,7 @@
             icon="pi pi-sparkles"
             size="small"
             severity="primary"
-            @click="launchPicker"
+            @click="addParameter"
             label="Add Parameter"
             text
           />
@@ -51,6 +51,13 @@
               />
               <label :for="'parameter-value-' + index">Value</label>
             </IftaLabel>
+            <Button
+              icon="pi pi-link"
+              label="Link"
+              text
+              size="small"
+              @click="launchPicker(item)"
+            />
           </div>
         </template>
       </Card>
@@ -80,20 +87,23 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 // Callback for adding a NEW parameter.
-const addParameter = (selectedVariable) => {
+const addParameter = () => {
   const newParams = [
     ...props.modelValue,
     {
-      name: selectedVariable.name,
-      value: `[${selectedVariable.component}.${selectedVariable.name}]`, // Or some default
+      name: 'New parameter',
+      value: '',
     },
   ]
   emit('update:modelValue', newParams)
 }
 
-// Launch the picker, passing the 'addParameter' function as the callback.
-const launchPicker = () => {
-  openVariablePicker(addParameter)
+// Launch the picker, update item with selected variable.
+const launchPicker = (itemToUpdate) => {
+    openVariablePicker((selectedVariable) => {
+    itemToUpdate.name = selectedVariable.name
+    itemToUpdate.value = selectedVariable.id || selectedVariable.name
+  })
 }
 
 // This function remains the same.
