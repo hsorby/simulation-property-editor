@@ -102,7 +102,8 @@ const addParameter = () => {
 const launchPicker = (itemToUpdate) => {
     openVariablePicker((selectedVariable) => {
     itemToUpdate.name = selectedVariable.name
-    itemToUpdate.value = selectedVariable.id || selectedVariable.name
+    itemToUpdate.id = selectedVariable.id || selectedVariable.name
+    itemToUpdate.value = selectedVariable.value
   })
 }
 
