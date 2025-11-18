@@ -15,12 +15,11 @@
               v-model="selectedExample"
               :options="exampleOptions"
               optionLabel="name"
-              optionValue="path"
               placeholder="Select an example"
               @change="loadSelectedExample"
             />
             <Message v_if="loadError" severity="error" :closable="false">{{
-              loadError
+              loadErrorExample
             }}</Message>
           </div>
         </template>
@@ -46,7 +45,7 @@
 </template>
 
 <script setup>
-import { computed, ref, provide, onMounted } from 'vue'
+import { computed, ref, provide } from 'vue'
 import Card from 'primevue/card'
 import Dialog from 'primevue/dialog'
 import SimulationConfiguration from './SimulationConfiguration.vue'
@@ -61,7 +60,7 @@ const formData = ref({
     data: [],
     plots: [],
   },
-  parameters: [],
+  parameters: []
 })
 
 const prettyJson = computed(() => {
@@ -71,11 +70,11 @@ const prettyJson = computed(() => {
 // --- Example Loader Logic ---
 
 const selectedExample = ref(null)
-const loadError = ref(null)
+const loadErrorExample = ref(null)
 
 const exampleOptions = ref([
-  { name: 'Example 1: Basic Inputs', path: './example-1.json' },
-  { name: 'Example 2: Full Config', path: './example-2.json' },
+  { name: 'Example 1: Basic Inputs', json: './example-1.json', cellml: './model-01.cellml' },
+  { name: 'Example 2: Full Config', json: './example-2.json', cellml: './model-02.cellml'  },
 ])
 
 const loadSelectedExample = async () => {
@@ -88,9 +87,13 @@ const loadSelectedExample = async () => {
     return
   }
 
+  await loadSimulationConfiguration()
+  await loadCellmlModel()
+}
+const loadSimulationConfiguration = async() => {
   try {
-    loadError.value = null
-    const response = await fetch(selectedExample.value)
+    loadErrorExample.value = null
+    const response = await fetch(selectedExample.value.json)
     if (!response.ok) {
       throw new Error(`Could not load file: ${response.statusText}`)
     }
@@ -98,8 +101,7 @@ const loadSelectedExample = async () => {
 
     formData.value = data
   } catch (error) {
-    console.error('Failed to load example:', error)
-    loadError.value = `Failed to load ${selectedExample.value}.`
+    loadErrorExample.value = `Failed to load ${selectedExample.value.json}.`
   }
 }
 
@@ -113,13 +115,31 @@ const pickableVariables = computed(() => {
   return cellmlVariables.value.filter((v) => v.id && v.id.trim() !== '')
 })
 
-const loadCellmlModel = () => {
-  cellmlVariables.value = [
-    { id: 'v', name: 'v', component: 'membrane' },
-    { id: 'I_Na', name: 'I_Na', component: 'sodium_channel' },
-    { id: 'I_K', name: 'I_K', component: 'potassium_channel' },
-    { id: 'm_gate', name: 'm', component: 'sodium_channel.m_gate' },
-  ]
+const loadCellmlModel = async () => {
+  if (!selectedExample?.value?.cellml) {
+    cellmlVariables.value = [];
+    return;
+  }
+  
+  // In a real app, you'd fetch(path) and use vue-libcellml.js
+  // For this demo, we'll just mock it based on the path.
+  console.log(`Loading CellML model from: ${selectedExample.value.cellml}`);
+  if (selectedExample.value.cellml === './model-01.cellml') {
+    cellmlVariables.value = [
+      { id: 'v', name: 'v', component: 'membrane' },
+      { id: 'I_Na', name: 'I_Na', component: 'sodium_channel' },
+    ];
+  } else if (selectedExample.value.cellml === './model-02.cellml') {
+    cellmlVariables.value = [
+      { id: 'v', name: 'v', component: 'membrane' },
+      { id: 'I_Na', name: 'I_Na', component: 'sodium_channel' },
+      { id: 'I_K', name: 'I_K', component: 'potassium_channel' },
+      { id: 'm_gate', name: 'm', component: 'sodium_channel.m_gate' },
+    ];
+  } else {
+     cellmlVariables.value = []; // Clear if path is unknown
+     loadErrorExample.value = `Failed to load ${selectedExample.value.cellml}.`
+  }
 }
 
 const openVariablePicker = (callback) => {
@@ -134,10 +154,6 @@ const onVariableSelected = (variable) => {
   isPickerOpen.value = false
   variablePickerCallback.value = null
 }
-
-onMounted(() => {
-  loadCellmlModel()
-})
 
 provide('openVariablePicker', openVariablePicker)
 </script>
