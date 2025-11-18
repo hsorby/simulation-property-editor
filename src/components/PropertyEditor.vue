@@ -35,10 +35,10 @@
     v-model:visible="isPickerOpen"
     modal
     header="Select CellML Variable"
-    class="w-full max-w-lg"
+    class="w-full max-w-lg mx-7"
   >
     <CellmlVariablePickerDialog
-      :variables="pickableVariables"
+      :model-data="cellmlModelData"
       @variable-selected="onVariableSelected"
     />
   </Dialog>
@@ -52,6 +52,8 @@ import SimulationConfiguration from './SimulationConfiguration.vue'
 import CellmlVariablePickerDialog from './CellmlVariablePickerDialog.vue'
 import Select from 'primevue/select'
 import Message from 'primevue/message'
+
+import { extractVariableInfromationFromModel } from '../services/cellml.js'
 
 // The application state (formData)
 const formData = ref({
@@ -107,7 +109,7 @@ const loadSimulationConfiguration = async() => {
 
 // --- CellML Integration ---
 
-const cellmlVariables = ref([])
+const cellmlModelData = ref([])
 const isPickerOpen = ref(false)
 const variablePickerCallback = ref(null)
 
@@ -120,25 +122,18 @@ const loadCellmlModel = async () => {
     cellmlVariables.value = [];
     return;
   }
-  
-  // In a real app, you'd fetch(path) and use vue-libcellml.js
-  // For this demo, we'll just mock it based on the path.
-  console.log(`Loading CellML model from: ${selectedExample.value.cellml}`);
-  if (selectedExample.value.cellml === './model-01.cellml') {
-    cellmlVariables.value = [
-      { id: 'v', name: 'v', component: 'membrane' },
-      { id: 'I_Na', name: 'I_Na', component: 'sodium_channel' },
-    ];
-  } else if (selectedExample.value.cellml === './model-02.cellml') {
-    cellmlVariables.value = [
-      { id: 'v', name: 'v', component: 'membrane' },
-      { id: 'I_Na', name: 'I_Na', component: 'sodium_channel' },
-      { id: 'I_K', name: 'I_K', component: 'potassium_channel' },
-      { id: 'm_gate', name: 'm', component: 'sodium_channel.m_gate' },
-    ];
-  } else {
-     cellmlVariables.value = []; // Clear if path is unknown
-     loadErrorExample.value = `Failed to load ${selectedExample.value.cellml}.`
+
+  try {
+    loadErrorExample.value = null
+    const response = await fetch(selectedExample.value.cellml)
+    if (!response.ok) {
+      throw new Error(`Could not load file: ${response.statusText}`)
+    }
+    const data = await response.text()
+
+    cellmlModelData.value = await extractVariableInfromationFromModel(data)
+  } catch (error) {
+    loadErrorExample.value = `Failed to load ${selectedExample.value.cellml}.`
   }
 }
 

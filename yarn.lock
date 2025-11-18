@@ -625,6 +625,11 @@ is-number@^7.0.0:
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-7.0.0.tgz#7535345b896734d5f80c4d06c50955527a14f12b"
   integrity sha512-41Cifkg6e8TylSpdtTpeLVMqvSBEVzTttHvERD741+pnZ8ANv0004MRL43QKPDlK9cGvNp6NZWZUBlbGXYxxng==
 
+libcellml.js@^0.6.3:
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/libcellml.js/-/libcellml.js-0.6.3.tgz#918cc098b86ff5d444659281fda50ecbcb20eedc"
+  integrity sha512-nwLS/LkSMUC0S40y3vnNmPu+xUgj70KHgR3/zj4BU2D8vqDwJ0xxeCwa5/ETJS7sVeY3u2TgKtBWbPGxHa2T7w==
+
 magic-string@^0.30.21:
   version "0.30.21"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.21.tgz#56763ec09a0fa8091df27879fd94d19078c00d91"
