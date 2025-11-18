@@ -43,13 +43,6 @@
           />
           <label :for="'vis-' + modelValue.id">Visibility (Optional)</label>
         </IftaLabel>
-        <Button
-          icon="pi pi-link"
-          label="Link"
-          text
-          size="small"
-          @click="launchPicker(modelValue)"
-        />
       </div>
       <!-- List Input Fields -->
       <div v-if="modelValue.possibleValues">
@@ -161,7 +154,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, inject } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 
 // Import all necessary PrimeVue components
 import Accordion from 'primevue/accordion'
@@ -187,8 +180,6 @@ const props = defineProps({
 // And emit 'remove' when the delete button is clicked
 const emit = defineEmits(['update:modelValue', 'remove'])
 
-const openVariablePicker = inject('openVariablePicker')
-
 const addPossibleValue = () => {
   // We can directly mutate the prop's properties because it's
   // a reactive object from the parent's ref.
@@ -197,14 +188,6 @@ const addPossibleValue = () => {
 
 const removePossibleValue = (index) => {
   props.modelValue.possibleValues.splice(index, 1)
-}
-
-const launchPicker = (itemToUpdate) => {
-  // Pass a callback that knows which item to update
-  openVariablePicker((selectedVariable) => {
-    itemToUpdate.name = selectedVariable.name
-    itemToUpdate.id = selectedVariable.id || selectedVariable.name
-  })
 }
 </script>
 
