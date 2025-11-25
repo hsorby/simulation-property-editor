@@ -10,11 +10,11 @@
       "import": "./dist/simpropertyeditor.es.js",
       "require": "./dist/simpropertyeditor.umd.js"
     },
-    "./style.css": "./dist/style.css"
+    "./style.css": "./dist/simpropertyeditor.css"
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build-lib": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
