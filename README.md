@@ -6,10 +6,10 @@ A lightweight, flexible Vue 3 component designed to edit simulation properties. 
 
 ## Features
 
-* **Vue 3 Compatible:** Built using the Composition API.
-* **TypeScript Support:** Includes type definitions for robust development.
-* **Dynamic Rendering:** Renders input fields based on provided JSON schemas or property definitions.
-* **Reactivity:** Seamless two-way data binding.
+- **Vue 3 Compatible:** Built using the Composition API.
+- **TypeScript Support:** Includes type definitions for robust development.
+- **Dynamic Rendering:** Renders input fields based on provided JSON schemas or property definitions.
+- **Reactivity:** Seamless two-way data binding.
 
 ## Installation
 
@@ -22,6 +22,7 @@ yarn add simulation-property-editor
 ```
 
 ## Usage
+
 Import the component and the necessary styles in your Vue component.
 
 ## Basic Example
@@ -54,13 +55,13 @@ const handleUpdate = (updatedData) => {
 <template>
   <div class="container">
     <h2>Edit Simulation Parameters</h2>
-    
-    <SimulationPropertyEditor 
+
+    <SimulationPropertyEditor
       v-model="simulationData"
       :schema="schema"
       @change="handleUpdate"
     />
-    
+
     <pre>{{ simulationData }}</pre>
   </div>
 </template>
@@ -71,16 +72,17 @@ Here is the full README content formatted as a single Markdown code block.
 You can copy the content inside the box below and paste it directly into a file named README.md in your repository root.
 
 Markdown
+
 # Simulation Property Editor
 
 A lightweight, flexible Vue 3 component designed to edit simulation properties. This component facilitates the creation of dynamic forms and property grids, making it easier to manage configuration data for scientific or engineering simulations.
 
 ## Features
 
-* **Vue 3 Compatible:** Built using the Composition API.
-* **TypeScript Support:** Includes type definitions for robust development.
-* **Dynamic Rendering:** Renders input fields based on provided JSON schemas or property definitions.
-* **Reactivity:** Seamless two-way data binding.
+- **Vue 3 Compatible:** Built using the Composition API.
+- **TypeScript Support:** Includes type definitions for robust development.
+- **Dynamic Rendering:** Renders input fields based on provided JSON schemas or property definitions.
+- **Reactivity:** Seamless two-way data binding.
 
 ## Installation
 
@@ -93,6 +95,7 @@ yarn add simpropertyeditor
 ```
 
 ## Usage
+
 Import the component and the necessary styles in your Vue component.
 
 ## Basic Example
@@ -100,8 +103,11 @@ Import the component and the necessary styles in your Vue component.
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'
-import { SimulationConfiguration, CellMLVariablePickerDialog } from 'simpropertyeditor'
-import 'simpropertyeditor/dist/simpropertyeditor.css'; // Ensure styles are imported
+import {
+  SimulationConfiguration,
+  CellMLVariablePickerDialog,
+} from 'simpropertyeditor'
+import 'simpropertyeditor/dist/simpropertyeditor.css' // Ensure styles are imported
 
 // The data object to be edited.
 const simulationData = ref({
@@ -110,7 +116,7 @@ const simulationData = ref({
     data: [],
     plots: [],
   },
-  parameters: []
+  parameters: [],
 })
 
 // CellML integration.
@@ -118,11 +124,10 @@ const cellmlModelData = ref([])
 const isPickerOpen = ref(false)
 const variablePickerCallback = ref(null)
 
-
 const loadCellmlModel = async () => {
   if (!selectedExample?.value?.cellml) {
-    cellmlVariables.value = [];
-    return;
+    cellmlVariables.value = []
+    return
   }
 
   try {
@@ -158,10 +163,8 @@ provide('openVariablePicker', openVariablePicker)
 <template>
   <div class="container">
     <h2>Edit Simulation Parameters</h2>
-    
-    <SimulationConfiguration 
-      v-model="simulationData"
-    />
+
+    <SimulationConfiguration v-model="simulationData" />
   </div>
 
   <Dialog
@@ -182,14 +185,14 @@ provide('openVariablePicker', openVariablePicker)
 
 ### Props
 
-| Prop | Type | Required | Description |
-| --- | --- | --- | --- |
-| modelValue | Object | Yes | The data object containing the simulation properties (v-model). |
+| Prop       | Type   | Required | Description                                                     |
+| ---------- | ------ | -------- | --------------------------------------------------------------- |
+| modelValue | Object | Yes      | The data object containing the simulation properties (v-model). |
 
 ### Events
 
-| Event | Arguments | Description |
-| --- | --- | --- |
+| Event             | Arguments       | Description                                                 |
+| ----------------- | --------------- | ----------------------------------------------------------- |
 | update:modelValue | (value: Object) | Emitted when any property changes (standard v-model event). |
 
 ## Development
