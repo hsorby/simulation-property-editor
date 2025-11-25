@@ -1,0 +1,7 @@
+.github/
+.vscode/
+index.html
+public/
+src/App.vue
+src/main.js
+src/components/PropertyEditor.vue

@@ -87,9 +87,9 @@ A lightweight, flexible Vue 3 component designed to edit simulation properties. 
 Install the package via npm or yarn:
 
 ```bash
-npm install simulation-property-editor
+npm install simpropertyeditor
 # or
-yarn add simulation-property-editor
+yarn add simpropertyeditor
 ```
 
 ## Usage
@@ -99,41 +99,82 @@ Import the component and the necessary styles in your Vue component.
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue';
-import { SimulationPropertyEditor } from 'simulation-property-editor';
-import 'simulation-property-editor/dist/style.css'; // Ensure styles are imported
+import { ref } from 'vue'
+import { SimulationConfiguration, CellMLVariablePickerDialog } from 'simpropertyeditor'
+import 'simpropertyeditor/dist/simpropertyeditor.css'; // Ensure styles are imported
 
-// The data object to be edited
+// The data object to be edited.
 const simulationData = ref({
-  viscosity: 0.5,
-  temperature: 300,
-  solver: 'navier-stokes'
-});
+  input: [],
+  output: {
+    data: [],
+    plots: [],
+  },
+  parameters: []
+})
 
-// Configuration/Schema defining how properties should be displayed
-const schema = [
-  { key: 'viscosity', type: 'number', label: 'Viscosity (Pa·s)' },
-  { key: 'temperature', type: 'number', label: 'Temperature (K)' },
-  { key: 'solver', type: 'select', options: ['euler', 'navier-stokes'], label: 'Solver Type' }
-];
+// CellML integration.
+const cellmlModelData = ref([])
+const isPickerOpen = ref(false)
+const variablePickerCallback = ref(null)
 
-const handleUpdate = (updatedData) => {
-  console.log('Data updated:', updatedData);
-};
+
+const loadCellmlModel = async () => {
+  if (!selectedExample?.value?.cellml) {
+    cellmlVariables.value = [];
+    return;
+  }
+
+  try {
+    loadErrorExample.value = null
+    const response = await fetch(selectedExample.value.cellml)
+    if (!response.ok) {
+      throw new Error(`Could not load file: ${response.statusText}`)
+    }
+    const data = await response.text()
+
+    cellmlModelData.value = await extractVariableInfromationFromModel(data)
+  } catch (error) {
+    loadErrorExample.value = `Failed to load ${selectedExample.value.cellml}.`
+  }
+}
+
+const openVariablePicker = (callback) => {
+  variablePickerCallback.value = callback
+  isPickerOpen.value = true
+}
+
+const onVariableSelected = (variable) => {
+  if (variablePickerCallback.value) {
+    variablePickerCallback.value(variable)
+  }
+  isPickerOpen.value = false
+  variablePickerCallback.value = null
+}
+
+provide('openVariablePicker', openVariablePicker)
 </script>
 
 <template>
   <div class="container">
     <h2>Edit Simulation Parameters</h2>
     
-    <SimulationPropertyEditor 
+    <SimulationConfiguration 
       v-model="simulationData"
-      :schema="schema"
-      @change="handleUpdate"
     />
-    
-    <pre>{{ simulationData }}</pre>
   </div>
+
+  <Dialog
+    v-model:visible="isPickerOpen"
+    modal
+    header="Select CellML Variable"
+    class="w-full max-w-lg mx-7"
+  >
+    <CellmlVariablePickerDialog
+      :model-data="cellmlModelData"
+      @variable-selected="onVariableSelected"
+    />
+  </Dialog>
 </template>
 ```
 
@@ -144,15 +185,12 @@ const handleUpdate = (updatedData) => {
 | Prop | Type | Required | Description |
 | --- | --- | --- | --- |
 | modelValue | Object | Yes | The data object containing the simulation properties (v-model). |
-| schema | Array/Object | Yes | Defines the structure, labels, and input types for the properties. |
-| readOnly | Boolean | No | If true, properties cannot be edited. Default false. |
 
 ### Events
 
 | Event | Arguments | Description |
 | --- | --- | --- |
 | update:modelValue | (value: Object) | Emitted when any property changes (standard v-model event). |
-| change | (property: string, value: any) | Emitted when a specific field is modified. |
 
 ## Development
 
@@ -184,4 +222,5 @@ npm run build
 ```
 
 ### License
-MIT
+
+Apache-2.0
