@@ -1,6 +1,6 @@
 {
   "name": "simpropertyeditor",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "Apache-2.0",
   "type": "module",
   "main": "./dist/simpropertyeditor.umd.js",
@@ -11,6 +11,13 @@
       "require": "./dist/simpropertyeditor.umd.js"
     },
     "./style.css": "./dist/simpropertyeditor.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hsorby/simulation-property-editor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hsorby/simulation-property-editor/issues"
   },
   "scripts": {
     "dev": "vite",
