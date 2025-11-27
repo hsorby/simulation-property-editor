@@ -23,7 +23,7 @@
           </div>
         </template>
         <template #content>
-          <div class="flex items-center gap-2,">
+          <div class="flex items-center gap-2">
             <IftaLabel class="flex-1">
               <Select
                 :id="'o-plot-x-' + index"

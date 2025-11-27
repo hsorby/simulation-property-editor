@@ -17,7 +17,7 @@
       </div>
     </template>
     <template #content>
-      <div class="flex items-center gap-2,">
+      <div class="flex items-center gap-2">
         <IftaLabel class="mb-4">
           <InputText
             :id="'name-' + modelValue.id"
@@ -46,7 +46,7 @@
       </div>
       <!-- List Input Fields -->
       <div v-if="modelValue.possibleValues">
-        <div class="flex items-center gap-2,">
+        <div class="flex items-center gap-2">
           <Select
             v-model="modelValue.defaultValue"
             :options="modelValue.possibleValues"
@@ -75,7 +75,7 @@
                   possibleValue, possibleValueIndex
                 ) in modelValue.possibleValues"
                 :key="possibleValueIndex"
-                class="flex items-center gap-2, mb-2"
+                class="flex items-center gap-2 mb-2"
               >
                 <InputText
                   v-model="possibleValue.name"
@@ -122,7 +122,7 @@
           </IftaLabel>
         </div>
 
-        <div class="flex gap-2,">
+        <div class="flex gap-2">
           <IftaLabel class="flex-1">
             <InputNumber
               :id="'min-' + modelValue.id"

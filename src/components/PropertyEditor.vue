@@ -8,7 +8,7 @@
         <template #title> Resulting JSON </template>
 
         <template #subtitle>
-          <div class="flex flex-pf-col gap-2,">
+          <div class="flex flex-pf-col gap-2">
             <label for="example-loader">Load an Example</label>
             <Select
               id="example-loader"

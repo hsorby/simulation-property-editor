@@ -13,7 +13,7 @@
           />
         </template>
       </Toolbar>
-      <Message v-if="modelValue.length === 0" severity="info" class="mb-6">
+      <Message v-if="modelValue.length === 0" severity="info" class="mb-12">
         No parameters.
       </Message>
       <Card
@@ -34,7 +34,7 @@
           </div>
         </template>
         <template #content>
-          <div class="flex items-center gap-2,">
+          <div class="flex items-center gap-2">
             <IftaLabel class="flex-1">
               <InputText
                 :id="'parameter-name-' + index"
