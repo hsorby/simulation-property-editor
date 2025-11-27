@@ -36,7 +36,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, defineEmits, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 import Button from 'primevue/button'
 import Tree from 'primevue/tree'
 

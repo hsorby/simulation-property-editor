@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, inject } from 'vue'
+import { inject } from 'vue'
 
 import Button from 'primevue/button'
 import Card from 'primevue/card'
