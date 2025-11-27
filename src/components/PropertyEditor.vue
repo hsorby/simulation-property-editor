@@ -49,7 +49,7 @@ import { computed, ref, provide } from 'vue'
 import Card from 'primevue/card'
 import Dialog from 'primevue/dialog'
 import SimulationConfiguration from './SimulationConfiguration.vue'
-import CellmlVariablePickerDialog from './CellmlVariablePickerDialog.vue'
+import CellmlVariablePickerDialog from './CellMLVariablePickerDialog.vue'
 import Select from 'primevue/select'
 import Message from 'primevue/message'
 
