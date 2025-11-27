@@ -37,7 +37,7 @@
     header="Select CellML Variable"
     class="w-full max-w-lg mx-7"
   >
-    <CellmlVariablePickerDialog
+    <CellMLVariablePickerDialog
       :model-data="cellmlModelData"
       @variable-selected="onVariableSelected"
     />
@@ -49,7 +49,7 @@ import { computed, ref, provide } from 'vue'
 import Card from 'primevue/card'
 import Dialog from 'primevue/dialog'
 import SimulationConfiguration from './SimulationConfiguration.vue'
-import CellmlVariablePickerDialog from './CellMLVariablePickerDialog.vue'
+import CellMLVariablePickerDialog from './CellMLVariablePickerDialog.vue'
 import Select from 'primevue/select'
 import Message from 'primevue/message'
 
