@@ -9,6 +9,7 @@ export default defineConfig(({ command }) => {
     plugins: [vue(), tailwindcss()],
     publicDir: command === 'build' ? false : 'public',
     build: {
+      sourcemap: true,
       lib: {
         // Could also be a dictionary or array of multiple entry points
         entry: path.resolve(__dirname, 'src/index.js'),
