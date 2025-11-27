@@ -102,7 +102,7 @@
 
       <!-- Range Input Fields -->
       <div v-else>
-        <div class="flex items-center gap-2,">
+        <div class="flex items-center gap-2">
           <Slider
             v-model.number="modelValue.defaultValue"
             :min="modelValue.minimumValue"
