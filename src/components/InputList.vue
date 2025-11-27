@@ -31,8 +31,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
-
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import Toolbar from 'primevue/toolbar'

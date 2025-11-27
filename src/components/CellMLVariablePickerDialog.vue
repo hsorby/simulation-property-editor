@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="flex flex-wrap gap-2 mb-2">
       <Button
         type="button"
@@ -36,7 +35,7 @@
 </template>
 
 <script setup>
-import { ref, computed, defineProps, defineEmits, watch } from 'vue'
+import { ref, computed, watch } from 'vue'
 import Button from 'primevue/button'
 import Tree from 'primevue/tree'
 

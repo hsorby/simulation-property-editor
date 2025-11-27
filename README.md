@@ -129,26 +129,26 @@ If you wish to contribute or modify the source code locally:
 ### Clone the repository
 
 ```bash
-git clone [https://github.com/hsorby/simulation-property-editor.git](https://github.com/hsorby/simulation-property-editor.git)
+git clone https://github.com/hsorby/simulation-property-editor.git
 cd simulation-property-editor
 ```
 
 ### Install dependencies
 
 ```bash
-npm install
+yarn
 ```
 
 ### Run the development server
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 ### Build for production
 
 ```bash
-npm run build
+yarn build-lib
 ```
 
 ### License

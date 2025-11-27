@@ -26,8 +26,6 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits } from 'vue'
-
 import Button from 'primevue/button'
 import Toolbar from 'primevue/toolbar'
 
