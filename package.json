@@ -10,7 +10,7 @@
       "import": "./dist/simpropertyeditor.es.js",
       "require": "./dist/simpropertyeditor.umd.js"
     },
-    "./style.css": "./dist/simpropertyeditor.css"
+    "./simpropertyeditor.css": "./dist/simpropertyeditor.css"
   },
   "repository": {
     "type": "git",

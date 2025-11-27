@@ -34,7 +34,7 @@ import {
   SimulationConfiguration,
   CellMLVariablePickerDialog,
 } from 'simpropertyeditor'
-import 'simpropertyeditor/dist/simpropertyeditor.css' // Ensure styles are imported
+import 'simpropertyeditor/simpropertyeditor.css' // Ensure styles are imported
 
 // The data object to be edited.
 const simulationData = ref({
