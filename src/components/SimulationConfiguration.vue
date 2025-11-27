@@ -8,15 +8,15 @@
         </AccordionContent>
       </AccordionPanel>
       <AccordionPanel value="1">
-        <AccordionHeader>Outputs</AccordionHeader>
-        <AccordionContent>
-          <OutputList v-model="modelValue.output"/>
-        </AccordionContent>
-      </AccordionPanel>
-      <AccordionPanel value="2">
         <AccordionHeader>Parameters</AccordionHeader>
         <AccordionContent>
           <ParameterList v-model="modelValue.parameters" />
+        </AccordionContent>
+      </AccordionPanel>
+      <AccordionPanel value="2">
+        <AccordionHeader>Outputs</AccordionHeader>
+        <AccordionContent>
+          <OutputList v-model="modelValue.output"/>
         </AccordionContent>
       </AccordionPanel>
     </Accordion>

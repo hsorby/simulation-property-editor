@@ -8,7 +8,7 @@
       <Card
         v-for="(item, index) in modelValue"
         :key="index"
-        class="mb-2 pa-2 border rounded"
+        class="mb-2 pa-2"
       >
         <template #title>
           <div class="flex justify-between items-center">
