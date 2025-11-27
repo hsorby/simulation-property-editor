@@ -1,8 +1,8 @@
 <template>
-  <Card class="mb-4">
+  <Card class="mb-6">
     <template #title>Plots</template>
     <template #content>
-      <Message v-if="modelValue.length === 0" severity="info" class="mb-4">
+      <Message v-if="modelValue.length === 0" severity="info" class="mb-6">
         No plots.
       </Message>
       <Card
@@ -11,7 +11,7 @@
         class="mb-2 pa-2 border rounded"
       >
         <template #title>
-          <div class="flex justify-content-between align-items-center">
+          <div class="flex justify-between items-center">
             <span>Plot {{ index + 1 }} </span>
             <Button
               icon="pi pi-trash"
@@ -23,7 +23,7 @@
           </div>
         </template>
         <template #content>
-          <div class="flex align-items-center gap-2">
+          <div class="flex items-center gap-2,">
             <IftaLabel class="flex-1">
               <Select
                 :id="'o-plot-x-' + index"

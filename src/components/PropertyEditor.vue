@@ -1,14 +1,14 @@
 <template>
-  <div class="grid">
-    <div class="col-12 lg:col-7 xl:col-8">
+  <div class="pf-grid">
+    <div class="pf-col-12 lg:pf-col-7 xl:pf-col-8">
       <SimulationConfiguration v-model="formData" />
     </div>
-    <div class="col-12 lg:col-5 xl:col-4">
+    <div class="pf-col-12 lg:pf-col-5 xl:pf-col-4">
       <Card class="sticky-top" style="top: 1rem">
         <template #title> Resulting JSON </template>
 
         <template #subtitle>
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-pf-col gap-2,">
             <label for="example-loader">Load an Example</label>
             <Select
               id="example-loader"
@@ -35,7 +35,7 @@
     v-model:visible="isPickerOpen"
     modal
     header="Select CellML Variable"
-    class="w-full max-w-lg mx-7"
+    class="w-full max-w-lg mx-16"
   >
     <CellMLVariablePickerDialog
       :model-data="cellmlModelData"
@@ -62,7 +62,7 @@ const formData = ref({
     data: [],
     plots: [],
   },
-  parameters: []
+  parameters: [],
 })
 
 const prettyJson = computed(() => {
@@ -75,8 +75,16 @@ const selectedExample = ref(null)
 const loadErrorExample = ref(null)
 
 const exampleOptions = ref([
-  { name: 'Example 1: Basic Inputs', json: './example-1.json', cellml: './model-01.cellml' },
-  { name: 'Example 2: Full Config', json: './example-2.json', cellml: './model-02.cellml'  },
+  {
+    name: 'Example 1: Basic Inputs',
+    json: './example-1.json',
+    cellml: './model-01.cellml',
+  },
+  {
+    name: 'Example 2: Full Config',
+    json: './example-2.json',
+    cellml: './model-02.cellml',
+  },
 ])
 
 const loadSelectedExample = async () => {
@@ -92,7 +100,7 @@ const loadSelectedExample = async () => {
   await loadSimulationConfiguration()
   await loadCellmlModel()
 }
-const loadSimulationConfiguration = async() => {
+const loadSimulationConfiguration = async () => {
   try {
     loadErrorExample.value = null
     const response = await fetch(selectedExample.value.json)
@@ -119,8 +127,8 @@ const pickableVariables = computed(() => {
 
 const loadCellmlModel = async () => {
   if (!selectedExample?.value?.cellml) {
-    cellmlVariables.value = [];
-    return;
+    cellmlVariables.value = []
+    return
   }
 
   try {

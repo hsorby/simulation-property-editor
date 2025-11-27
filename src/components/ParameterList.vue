@@ -13,7 +13,7 @@
           />
         </template>
       </Toolbar>
-      <Message v-if="modelValue.length === 0" severity="info" class="mb-4">
+      <Message v-if="modelValue.length === 0" severity="info" class="mb-6">
         No parameters.
       </Message>
       <Card
@@ -22,7 +22,7 @@
         class="mb-2 pa-2 border rounded"
       >
         <template #title>
-          <div class="flex justify-content-between align-items-center">
+          <div class="flex justify-between items-center">
             <span> {{ item.name }}</span>
             <Button
               icon="pi pi-trash"
@@ -34,7 +34,7 @@
           </div>
         </template>
         <template #content>
-          <div class="flex align-items-center gap-2">
+          <div class="flex items-center gap-2,">
             <IftaLabel class="flex-1">
               <InputText
                 :id="'parameter-name-' + index"

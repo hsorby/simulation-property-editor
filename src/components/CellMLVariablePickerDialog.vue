@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <div class="flex flex-wrap gap-2 mb-2">
       <Button
         type="button"

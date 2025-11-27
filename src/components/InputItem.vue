@@ -1,7 +1,7 @@
 <template>
-  <Card class="mb-4" :color="modelValue.possibleValues ? 'blue' : 'green'">
+  <Card class="mb-6" :color="modelValue.possibleValues ? 'blue' : 'green'">
     <template #title>
-      <div class="flex justify-content-between align-items-center">
+      <div class="flex justify-between items-center">
         <span>
           {{ modelValue.name || 'New Input' }}
           <span class="value-type-text"
@@ -17,8 +17,8 @@
       </div>
     </template>
     <template #content>
-      <div class="flex align-items-center gap-2">
-        <IftaLabel class="mb-3">
+      <div class="flex items-center gap-2,">
+        <IftaLabel class="mb-4">
           <InputText
             :id="'name-' + modelValue.id"
             v-model="modelValue.name"
@@ -26,7 +26,7 @@
           />
           <label :for="'name-' + modelValue.id">Name</label>
         </IftaLabel>
-        <IftaLabel class="mb-3">
+        <IftaLabel class="mb-4">
           <InputText
             :id="'id-' + modelValue.id"
             v-model="modelValue.id"
@@ -34,7 +34,7 @@
           />
           <label :for="'id-' + modelValue.id">ID (Optional)</label>
         </IftaLabel>
-        <IftaLabel class="mb-3">
+        <IftaLabel class="mb-4">
           <InputText
             :id="'vis-' + modelValue.id"
             placeholder="e.g., 'mode == &quot;advanced&quot;'"
@@ -46,14 +46,14 @@
       </div>
       <!-- List Input Fields -->
       <div v-if="modelValue.possibleValues">
-        <div class="flex align-items-center gap-2">
+        <div class="flex items-center gap-2,">
           <Select
             v-model="modelValue.defaultValue"
             :options="modelValue.possibleValues"
             optionLabel="name"
             optionValue="value"
             placeholder="Select a default value"
-            class="w-full mb-3"
+            class="w-full mb-4"
           />
         </div>
         <Accordion :value="'-1'">
@@ -75,7 +75,7 @@
                   possibleValue, possibleValueIndex
                 ) in modelValue.possibleValues"
                 :key="possibleValueIndex"
-                class="flex align-items-center gap-2 mb-2"
+                class="flex items-center gap-2, mb-2"
               >
                 <InputText
                   v-model="possibleValue.name"
@@ -102,15 +102,15 @@
 
       <!-- Range Input Fields -->
       <div v-else>
-        <div class="flex align-items-center gap-2">
+        <div class="flex items-center gap-2,">
           <Slider
             v-model.number="modelValue.defaultValue"
             :min="modelValue.minimumValue"
             :max="modelValue.maximumValue"
             :step="modelValue.stepValue"
-            class="w-full mb-3"
+            class="w-full mb-4"
           />
-          <IftaLabel class="mb-3">
+          <IftaLabel class="mb-4">
             <InputNumber
               :id="'default-' + modelValue.id"
               v-model="modelValue.defaultValue"
@@ -122,7 +122,7 @@
           </IftaLabel>
         </div>
 
-        <div class="flex gap-2">
+        <div class="flex gap-2,">
           <IftaLabel class="flex-1">
             <InputNumber
               :id="'min-' + modelValue.id"
