@@ -1,7 +1,7 @@
 <template>
   <div class="pf-grid">
     <div class="pf-col-12 lg:pf-col-7 xl:pf-col-8">
-      <SimulationConfiguration v-model="formData" />
+      <SimulationConfiguration v-model="formData" v-model:expandedPanels="activePanels"/>
     </div>
     <div class="pf-col-12 lg:pf-col-5 xl:pf-col-4">
       <Card class="sticky-top" style="top: 1rem">
@@ -64,6 +64,7 @@ const formData = ref({
   },
   parameters: [],
 })
+const activePanels = ref(['0', '1', '2'])
 
 const prettyJson = computed(() => {
   return JSON.stringify(formData.value, null, 2)

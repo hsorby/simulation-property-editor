@@ -1,6 +1,10 @@
 <template>
   <Panel header="Simulation Configuration">
-    <Accordion :value="['0', '1', '2']" multiple>
+    <Accordion 
+      :value="expandedPanels" 
+      @update:value="(val) => $emit('update:expandedPanels', val)" 
+      multiple
+    >
       <AccordionPanel value="0">
         <AccordionHeader>Inputs</AccordionHeader>
         <AccordionContent>
@@ -34,12 +38,17 @@ import InputList from './InputList.vue'
 import OutputList from './OutputList.vue'
 import ParameterList from './ParameterList.vue'
 
-
-const props = defineProps({
+defineProps({
   modelValue: {
     type: Object,
     required: true,
   },
+  expandedPanels: {
+    type: Array,
+    // Default to having all three accordian panels open.
+    default: () => ['0', '1', '2'] 
+  }
 })
 
+defineEmits(['update:modelValue', 'update:expandedPanels'])
 </script>
