@@ -58,8 +58,8 @@ const props = defineProps({
   },
   index: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 })
 
 defineEmits(['remove'])
@@ -67,14 +67,11 @@ defineEmits(['remove'])
 // Generate a unique ID for accessibility labels based on index
 const id = computed(() => props.index)
 
-// Inject directly into the child. 
-// If the provider is an ancestor of the List, the Item can see it too.
 const openVariablePicker = inject('openVariablePicker')
 
 const launchPicker = () => {
   openVariablePicker((selectedVariable) => {
-    // We are mutating the object prop directly. 
-    // In Vue 3 with Objects, this preserves reactivity and is standard for forms.
+    // We are mutating the object prop directly preserving reactivity.
     props.parameter.name = selectedVariable.name
     props.parameter.id = selectedVariable.id || selectedVariable.name
     props.parameter.value = selectedVariable.value

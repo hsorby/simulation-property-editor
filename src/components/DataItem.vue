@@ -21,7 +21,7 @@
           />
           <label :for="`o-data-name-${index}`">Name</label>
         </IftaLabel>
-        
+
         <IftaLabel class="flex-1">
           <InputText
             :id="`o-data-id-${index}`"
@@ -57,13 +57,12 @@ const props = defineProps({
   },
   index: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 })
 
 defineEmits(['remove'])
 
-// Inject moves here. The child now handles its own "linking" logic.
 const openVariablePicker = inject('openVariablePicker')
 
 const launchPicker = () => {

@@ -24,14 +24,12 @@
 </template>
 
 <script setup>
-// PrimeVue components for the main layout
 import Accordion from 'primevue/accordion'
 import AccordionPanel from 'primevue/accordionpanel'
 import AccordionHeader from 'primevue/accordionheader'
 import AccordionContent from 'primevue/accordioncontent'
 import Panel from 'primevue/panel'
 
-// Import the new child components
 import InputList from './InputList.vue'
 import OutputList from './OutputList.vue'
 import ParameterList from './ParameterList.vue'

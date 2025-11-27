@@ -5,8 +5,8 @@
       <Message v-if="modelValue.length === 0" severity="info" class="mb-6">
         No data items.
       </Message>
-      
-      <DataItem 
+
+      <DataItem
         v-for="(item, index) in modelValue"
         :key="index"
         :index="index"
@@ -21,9 +21,6 @@
 import Card from 'primevue/card'
 import Message from 'primevue/message'
 import DataItem from './DataItem.vue'
-
-// We removed 'inject', 'InputText', 'IftaLabel' and 'Button' from here
-// as they are now encapsulated in the child.
 
 const props = defineProps({
   modelValue: {
